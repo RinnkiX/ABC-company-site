@@ -1,0 +1,43 @@
+media:
+  input: src/assets
+  output: /src/assets
+
+content:
+  - name: blog
+    label: Blog Posts
+    type: collection
+    path: src/content/blog
+    view:
+      fields: [title, pubDate]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: description
+        label: Description
+        type: text
+        required: true
+
+      - name: pubDate
+        label: Published Date
+        type: date
+        required: true
+        time: false
+
+      - name: updatedDate
+        label: Updated Date
+        type: date
+        required: false
+        time: false
+
+      - name: heroImage
+        label: Hero Image
+        type: image
+        required: false
+        description: "Example: ../../assets/blog-placeholder-1.jpg"
+
+      - name: body
+        label: Post Body
+        type: markdown
