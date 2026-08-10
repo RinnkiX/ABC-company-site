@@ -7,9 +7,16 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog')).sort((a, b) => {
+	const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+	if (dateDiff !== 0) return dateDiff;
+
+	const updatedDiff =
+		(b.data.updatedDate?.valueOf() ?? 0) - (a.data.updatedDate?.valueOf() ?? 0);
+	if (updatedDiff !== 0) return updatedDiff;
+
+	return b.id.localeCompare(a.id);
+});
 ---
 
 <!doctype html>
