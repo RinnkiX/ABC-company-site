@@ -11,7 +11,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://abc-company-site.vercel.app/',
   output: 'server',
   integrations: [mdx(), sitemap(), react(), clerk()],
 
