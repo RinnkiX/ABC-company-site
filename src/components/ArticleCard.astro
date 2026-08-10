@@ -2,25 +2,51 @@
 export interface Props {
 	title: string;
 	description: string;
+	href?: string;
 	author?: string;
 	date?: string;
 	category?: string;
 }
 
-const { title, description, author, date, category } = Astro.props;
+const { title, description, href, author, date, category } = Astro.props;
 ---
 
-<article class="article-card">
-	<h2>{title}</h2>
-	<p>{description}</p>
-	<div class="meta">
-		{author && <span>Author: {author}</span>}
-		{date && <span>Date: {date}</span>}
-		{category && <span>Category: {category}</span>}
-	</div>
-</article>
+{
+	href ? (
+		<a href={href} class="article-card-link">
+			<article class="article-card">
+				<h2>{title}</h2>
+				<p>{description}</p>
+				<div class="meta">
+					{author && <span>Author: {author}</span>}
+					{date && <span>Date: {date}</span>}
+					{category && <span>Category: {category}</span>}
+				</div>
+			</article>
+		</a>
+	) : (
+		<article class="article-card">
+			<h2>{title}</h2>
+			<p>{description}</p>
+			<div class="meta">
+				{author && <span>Author: {author}</span>}
+				{date && <span>Date: {date}</span>}
+				{category && <span>Category: {category}</span>}
+			</div>
+		</article>
+	)
+}
 
 <style>
+	.article-card-link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+	}
+	.article-card-link:hover .article-card {
+		border-color: var(--accent);
+		box-shadow: 0 4px 12px rgba(var(--gray), 20%);
+	}
 	.article-card {
 		padding: 1.5rem;
 		border: 1px solid rgb(var(--gray-light));
@@ -28,10 +54,12 @@ const { title, description, author, date, category } = Astro.props;
 		box-shadow: var(--box-shadow);
 		background: white;
 		margin-bottom: 1.5rem;
+		transition: border-color 0.2s, box-shadow 0.2s;
 	}
 	.article-card h2 {
 		margin-top: 0;
 		font-size: 1.5rem;
+		color: rgb(var(--black));
 	}
 	.meta {
 		display: flex;
