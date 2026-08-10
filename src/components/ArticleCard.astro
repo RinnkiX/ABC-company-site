@@ -1,0 +1,44 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+	author?: string;
+	date?: string;
+	category?: string;
+}
+
+const { title, description, author, date, category } = Astro.props;
+---
+
+<article class="article-card">
+	<h2>{title}</h2>
+	<p>{description}</p>
+	<div class="meta">
+		{author && <span>Author: {author}</span>}
+		{date && <span>Date: {date}</span>}
+		{category && <span>Category: {category}</span>}
+	</div>
+</article>
+
+<style>
+	.article-card {
+		padding: 1.5rem;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		background: white;
+		margin-bottom: 1.5rem;
+	}
+	.article-card h2 {
+		margin-top: 0;
+		font-size: 1.5rem;
+	}
+	.meta {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		font-size: 0.875rem;
+		color: rgb(var(--gray));
+		margin-top: 1rem;
+	}
+</style>

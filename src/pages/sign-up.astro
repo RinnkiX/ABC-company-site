@@ -1,0 +1,37 @@
+---
+import { SignUp } from '@clerk/astro/components';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Sign Up - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Sign Up</h1>
+			<div class="auth-box">
+				<SignUp
+					routing="path"
+					path="/sign-up"
+					signInUrl="/sign-in"
+					redirectUrl="/dashboard"
+					fallbackRedirectUrl="/dashboard"
+				/>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.auth-box {
+		margin: 2rem auto;
+		max-width: 480px;
+	}
+</style>

@@ -1,0 +1,47 @@
+---
+import ArticleCard from './ArticleCard.astro';
+
+const articles = [
+	{
+		title: 'AI in Business',
+		description: 'How ABC Company uses AI to drive innovation and efficiency.',
+		author: 'Jane Doe',
+		date: '2026-08-01',
+		category: 'Technology',
+	},
+	{
+		title: 'New Product Launch',
+		description: 'Introducing our latest product designed for modern enterprises.',
+		author: 'John Smith',
+		date: '2026-07-15',
+		category: 'Product',
+	},
+	{
+		title: 'Company News',
+		description: 'What happened at ABC Company this month.',
+		author: 'Emily Chen',
+		date: '2026-07-01',
+		category: 'News',
+	},
+];
+---
+
+<section class="article-list">
+	<h2>Company Blog</h2>
+	{articles.map((article) => (
+		<ArticleCard
+			key={article.title}
+			title={article.title}
+			description={article.description}
+			author={article.author}
+			date={article.date}
+			category={article.category}
+		/>
+	))}
+</section>
+
+<style>
+	.article-list h2 {
+		margin-bottom: 1rem;
+	}
+</style>

@@ -1,0 +1,105 @@
+---
+import { UserButton } from '@clerk/astro/components';
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+
+const auth = Astro.locals.auth;
+const userId = auth ? (await auth()).userId : null;
+---
+
+<header>
+	<nav>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			{userId && <HeaderLink href="/dashboard">Dashboard</HeaderLink>}
+		</div>
+		<div class="auth-links">
+			{userId ? (
+				<UserButton afterSignOutUrl="/" client:load />
+			) : (
+				<>
+					<a href="/sign-in" class="auth-link">Login</a>
+					<a href="/sign-up" class="auth-link signup">Sign Up</a>
+				</>
+			)}
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	.internal-links,
+	.auth-links {
+		display: flex;
+		align-items: center;
+	}
+	.internal-links {
+		margin-inline: auto;
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: rgb(var(--black));
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	button.login {
+		padding: 0.5em 1em;
+		background: var(--accent);
+		color: white;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		font-size: 1em;
+	}
+	button.login:hover {
+		background: var(--accent-dark);
+	}
+	.auth-link {
+		padding: 0.5em 1em;
+		color: var(--accent);
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 500;
+	}
+	.auth-link:hover {
+		background: rgba(var(--gray-light), 0.5);
+	}
+	.auth-link.signup {
+		background: var(--accent);
+		color: white;
+	}
+	.auth-link.signup:hover {
+		background: var(--accent-dark);
+	}
+	@media (max-width: 720px) {
+		.internal-links {
+			gap: 0.25em;
+		}
+	}
+</style>

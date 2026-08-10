@@ -1,0 +1,76 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const { userId } = Astro.locals.auth();
+if (!userId) {
+	return Astro.redirect('/sign-in');
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Dashboard - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Dashboard</h1>
+			<p class="welcome">Welcome back! Your user ID is: <code>{userId}</code></p>
+
+			<section class="stats">
+				<h2>Business Overview</h2>
+				<div class="stats-grid">
+					<div class="stat-card">
+						<h3>$1.2M</h3>
+						<p>Total Revenue</p>
+					</div>
+					<div class="stat-card">
+						<h3>3,420</h3>
+						<p>Active Users</p>
+					</div>
+					<div class="stat-card">
+						<h3>856</h3>
+						<p>New Orders</p>
+					</div>
+					<div class="stat-card">
+						<h3>98%</h3>
+						<p>Satisfaction</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.welcome {
+		margin-bottom: 2rem;
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1.5rem;
+		margin-top: 1rem;
+	}
+	.stat-card {
+		padding: 1.5rem;
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		text-align: center;
+	}
+	.stat-card h3 {
+		font-size: 2rem;
+		margin: 0;
+		color: var(--accent);
+	}
+	.stat-card p {
+		margin: 0.5rem 0 0;
+		color: rgb(var(--gray));
+	}
+</style>

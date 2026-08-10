@@ -1,0 +1,111 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ArticleList from '../components/ArticleList.astro';
+import Likes from '../components/Likes.jsx';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const auth = Astro.locals.auth;
+const userId = auth ? (await auth()).userId : null;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<Hero />
+
+			<section class="intro">
+				<h2>About ABC Company</h2>
+				<p>
+					ABC Company builds modern technology solutions for businesses of all sizes.
+					We specialize in AI-driven products, enterprise software, and digital transformation.
+				</p>
+				<a href="/about">Read more about us →</a>
+			</section>
+
+			<ArticleList />
+
+			<section class="interactive-demo">
+				<h2>Interactive Demo</h2>
+				<p>This React island runs inside the Astro page:</p>
+				<Likes client:load />
+			</section>
+
+			{!userId && (
+				<section class="cta-section">
+					<h2>Join ABC Company</h2>
+					<p>Sign in to access your dashboard and business insights.</p>
+					<a href="/sign-in" class="button">Sign In / Register</a>
+				</section>
+			)}
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.intro {
+		margin: 3rem 0;
+		padding: 2rem;
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+	}
+	.interactive-demo {
+		margin: 3rem 0;
+		text-align: center;
+	}
+	:global(.likes) {
+		max-width: 300px;
+		margin: 1rem auto;
+		padding: 1.5rem;
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		text-align: center;
+	}
+	:global(.likes) h3 {
+		margin-top: 0;
+	}
+	:global(.likes) button {
+		padding: 0.5rem 1rem;
+		background: var(--accent);
+		color: white;
+		border: none;
+		border-radius: 6px;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+	:global(.likes) button:hover {
+		background: var(--accent-dark);
+	}
+	.cta-section {
+		margin: 3rem 0;
+		padding: 2rem;
+		background: white;
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		text-align: center;
+	}
+	.cta-section .button {
+		display: inline-block;
+		margin-top: 1rem;
+		padding: 0.75rem 1.5rem;
+		background: var(--accent);
+		color: white;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 700;
+	}
+	.cta-section .button:hover {
+		background: var(--accent-dark);
+		color: white;
+	}
+</style>
