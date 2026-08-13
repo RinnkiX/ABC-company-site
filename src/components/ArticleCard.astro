@@ -6,14 +6,20 @@ export interface Props {
 	author?: string;
 	date?: string;
 	category?: string;
+	class?: string;
+	style?: string;
 }
 
-const { title, description, href, author, date, category } = Astro.props;
+const { title, description, href, author, date, category, class: className, style } = Astro.props;
 ---
 
 {
 	href ? (
-		<a href={href} class="article-card-link">
+		<a
+			href={href}
+			class:list={['article-card-link', className]}
+			{...{ style }}
+		>
 			<article class="article-card">
 				<h2>{title}</h2>
 				<p>{description}</p>
@@ -25,7 +31,7 @@ const { title, description, href, author, date, category } = Astro.props;
 			</article>
 		</a>
 	) : (
-		<article class="article-card">
+		<article class:list={['article-card', className]} {...{ style }}>
 			<h2>{title}</h2>
 			<p>{description}</p>
 			<div class="meta">
@@ -44,29 +50,34 @@ const { title, description, href, author, date, category } = Astro.props;
 		color: inherit;
 	}
 	.article-card-link:hover .article-card {
-		border-color: var(--accent);
-		box-shadow: 0 4px 12px rgba(var(--gray), 20%);
+		border-color: var(--color-primary);
+		box-shadow: var(--shadow-hover);
+		transform: translateY(-2px);
 	}
 	.article-card {
-		padding: 1.5rem;
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 8px;
-		box-shadow: var(--box-shadow);
-		background: white;
-		margin-bottom: 1.5rem;
-		transition: border-color 0.2s, box-shadow 0.2s;
+		padding: var(--space-3);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-card);
+		background: var(--surface);
+		margin-bottom: var(--space-3);
+		transition:
+			border-color var(--duration-fast) var(--ease-out),
+			box-shadow var(--duration-fast) var(--ease-out),
+			transform var(--duration-fast) var(--ease-out);
 	}
 	.article-card h2 {
 		margin-top: 0;
 		font-size: 1.5rem;
-		color: rgb(var(--black));
+		color: var(--text-strong);
 	}
 	.meta {
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		font-family: var(--font-mono);
 		font-size: 0.875rem;
-		color: rgb(var(--gray));
+		color: var(--text-muted);
 		margin-top: 1rem;
 	}
 </style>

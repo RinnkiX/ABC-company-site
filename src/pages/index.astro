@@ -22,7 +22,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				slogan="We build scalable, high-impact solutions to help you grow with confidence."
 			/>
 
-			<section class="intro">
+			<section class="intro reveal">
 				<div class="intro-grid">
 					<div class="intro-text">
 						<h2>About ABC Company</h2>
@@ -32,7 +32,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 							Branding & Identity to Digital Marketing, we help organizations grow
 							with confidence.
 						</p>
-						<a href="/about" class="button">Read more about us →</a>
+						<a href="/about" class="btn btn--primary">Read more about us →</a>
 					</div>
 					<div class="intro-image">
 						<img src="/images/viora/about/about-1.jpg" alt="ABC Company team at work" />
@@ -57,11 +57,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 <style>
 	.intro {
-		margin: 3rem 0;
-		padding: 2rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: var(--box-shadow);
+		margin: var(--section-gap) 0;
+		padding: var(--space-4);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-card);
 	}
 	.intro-grid {
 		display: grid;
@@ -71,95 +72,44 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	}
 	.intro-image img {
 		width: 100%;
-		border-radius: 12px;
-		box-shadow: var(--box-shadow);
-	}
-	.intro-stats {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-		gap: 1rem;
-		margin-top: 2rem;
-		padding-top: 2rem;
-		border-top: 1px solid rgb(var(--gray-light));
-	}
-	.intro-stats .stat {
-		text-align: center;
-	}
-	.intro-stats strong {
-		display: block;
-		font-size: 2rem;
-		color: var(--accent);
-	}
-	.intro-stats span {
-		font-size: 0.9rem;
-		color: rgb(var(--gray));
-	}
-	.intro .button {
-		display: inline-block;
-		margin-top: 0.5rem;
-		padding: 0.75rem 1.5rem;
-		background: var(--accent);
-		color: white;
-		text-decoration: none;
-		border-radius: 6px;
-		font-weight: 700;
-	}
-	.intro .button:hover {
-		background: var(--accent-dark);
-	}
-	@media (max-width: 720px) {
-		.intro-grid {
-			grid-template-columns: 1fr;
-		}
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow-card);
 	}
 	.interactive-demo {
-		margin: 3rem 0;
+		margin: var(--section-gap) 0;
 		text-align: center;
 	}
 	:global(.likes) {
 		max-width: 300px;
 		margin: 1rem auto;
-		padding: 1.5rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: var(--box-shadow);
+		padding: var(--space-3);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-card);
 		text-align: center;
 	}
 	:global(.likes) h3 {
 		margin-top: 0;
 	}
 	:global(.likes) button {
-		padding: 0.5rem 1rem;
-		background: var(--accent);
-		color: white;
-		border: none;
-		border-radius: 6px;
-		font-size: 1rem;
-		cursor: pointer;
-	}
-	:global(.likes) button:hover {
-		background: var(--accent-dark);
+		margin-top: 0.5rem;
 	}
 	.cta-section {
-		margin: 3rem 0;
-		padding: 2rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: var(--box-shadow);
+		margin: var(--section-gap) 0;
+		padding: var(--space-4);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-card);
 		text-align: center;
 	}
-	.cta-section .button {
-		display: inline-block;
-		margin-top: 1rem;
-		padding: 0.75rem 1.5rem;
-		background: var(--accent);
-		color: white;
-		text-decoration: none;
-		border-radius: 6px;
-		font-weight: 700;
+	.cta-section .btn {
+		margin-top: var(--space-2);
 	}
-	.cta-section .button:hover {
-		background: var(--accent-dark);
-		color: white;
+	@media (max-width: 768px) {
+		.intro-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

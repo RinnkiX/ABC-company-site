@@ -24,15 +24,18 @@ const formatDate = (date: Date) =>
 		<h2>Latest News & Insights</h2>
 		<a href="/blog" class="view-all">View all →</a>
 	</div>
-	{posts.map((post) => (
-		<ArticleCard
-			key={post.id}
-			href={`/blog/${post.id}/`}
-			title={post.data.title}
-			description={post.data.description}
-			date={formatDate(post.data.pubDate)}
-		/>
-	))}
+	<div class="stagger">
+		{posts.map((post, index) => (
+			<ArticleCard
+				key={post.id}
+				href={`/blog/${post.id}/`}
+				title={post.data.title}
+				description={post.data.description}
+				date={formatDate(post.data.pubDate)}
+				style={`--i: ${index}`}
+			/>
+		))}
+	</div>
 </section>
 
 <style>
@@ -40,13 +43,13 @@ const formatDate = (date: Date) =>
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
-		margin-bottom: 1rem;
+		margin-bottom: var(--space-2);
 	}
 	.section-header h2 {
 		margin: 0;
 	}
 	.view-all {
-		color: var(--accent);
+		color: var(--color-primary);
 		text-decoration: none;
 		font-weight: 500;
 	}

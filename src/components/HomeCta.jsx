@@ -11,7 +11,7 @@ export default function HomeCta() {
 		<section className="cta-section">
 			<h2>Ready To Take Your Business Further?</h2>
 			<p>Sign in to access your dashboard and business insights.</p>
-			<a href="/sign-in" className="button">Sign In / Register</a>
+			<a href="/sign-in" className="btn btn--primary">Sign In / Register</a>
 		</section>
 	);
 }

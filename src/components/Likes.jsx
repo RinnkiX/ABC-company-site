@@ -30,7 +30,7 @@ export default function Likes() {
   return (
     <div className="likes">
       <h3>Likes: {count}</h3>
-      <button onClick={() => setCount(count + 1)}>+1</button>
+      <button className="btn btn--primary" onClick={() => setCount(count + 1)}>+1</button>
     </div>
   );
 }

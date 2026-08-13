@@ -57,15 +57,15 @@ import Layout from '../layouts/BlogPost.astro';
 	<style>
 		.about-hero {
 			width: 100%;
-			border-radius: 12px;
-			box-shadow: var(--box-shadow);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow-card);
 			margin: 1.5rem 0;
 		}
 		.about-image {
 			width: 100%;
 			max-width: 600px;
-			border-radius: 12px;
-			box-shadow: var(--box-shadow);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow-card);
 			margin: 1.5rem auto;
 			display: block;
 		}
@@ -81,8 +81,8 @@ import Layout from '../layouts/BlogPost.astro';
 		}
 		.team-row img {
 			width: 100%;
-			border-radius: 12px;
-			box-shadow: var(--box-shadow);
+			border-radius: var(--radius-md);
+			box-shadow: var(--shadow-card);
 		}
 		.team-row figcaption {
 			margin-top: 0.75rem;
@@ -90,18 +90,19 @@ import Layout from '../layouts/BlogPost.astro';
 		}
 		.team-row figcaption span {
 			font-weight: 400;
-			color: rgb(var(--gray));
+			color: var(--text-muted);
 			font-size: 0.9rem;
 		}
 		.about-stats {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 			gap: 1rem;
-			margin: 1.5rem 0;
-			padding: 1.5rem;
-			background: white;
-			border-radius: 8px;
-			box-shadow: var(--box-shadow);
+			margin: var(--space-3) 0;
+			padding: var(--space-3);
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: var(--radius-sm);
+			box-shadow: var(--shadow-card);
 		}
 		.about-stats .stat {
 			text-align: center;
@@ -109,11 +110,16 @@ import Layout from '../layouts/BlogPost.astro';
 		.about-stats strong {
 			display: block;
 			font-size: 2rem;
-			color: var(--accent);
+			color: var(--color-primary);
 		}
 		.about-stats span {
 			font-size: 0.9rem;
-			color: rgb(var(--gray));
+			color: var(--text-muted);
+		}
+		@media (max-width: 768px) {
+			.about-stats {
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 	</style>
 </Layout>

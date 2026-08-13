@@ -24,18 +24,16 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 960px;
-			}
 			.page-header {
 				text-align: center;
-				margin-bottom: 2rem;
+				margin-bottom: var(--space-6);
+				padding-top: var(--space-4);
 			}
 			.page-header h1 {
 				margin-bottom: 0.5rem;
 			}
 			.page-header p {
-				color: rgb(var(--gray));
+				color: var(--text-muted);
 			}
 			ul {
 				display: flex;
@@ -50,7 +48,9 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 			}
 			ul li * {
 				text-decoration: none;
-				transition: 0.2s ease;
+				transition:
+					color var(--duration-fast) var(--ease-out),
+					box-shadow var(--duration-fast) var(--ease-out);
 			}
 			ul li:first-child {
 				width: 100%;
@@ -65,28 +65,30 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 			}
 			ul li img {
 				margin-bottom: 0.5rem;
-				border-radius: 12px;
+				border-radius: var(--radius-md);
 			}
 			ul li a {
 				display: block;
 			}
 			.title {
 				margin: 0;
-				color: rgb(var(--black));
+				color: var(--text-strong);
 				line-height: 1;
 			}
 			.date {
 				margin: 0;
-				color: rgb(var(--gray));
+				font-family: var(--font-mono);
+				font-size: 0.875rem;
+				color: var(--text-muted);
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
-				color: rgb(var(--accent));
+				color: var(--color-primary);
 			}
 			ul a:hover img {
-				box-shadow: var(--box-shadow);
+				box-shadow: var(--shadow-card);
 			}
-			@media (max-width: 720px) {
+			@media (max-width: 768px) {
 				ul {
 					gap: 0.5em;
 				}
@@ -98,7 +100,7 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 					margin-bottom: 0;
 				}
 				ul li:first-child .title {
-					font-size: 1.563em;
+					font-size: 1.563rem;
 				}
 			}
 		</style>
@@ -111,10 +113,10 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 				<p>Explore the latest updates, stories, and ideas from ABC Company.</p>
 			</section>
 			<section>
-				<ul>
+				<ul class="stagger">
 					{
-						posts.map((post) => (
-							<li>
+						posts.map((post, index) => (
+							<li style={`--i: ${index}`}>
 								<a href={`/blog/${post.id}/`}>
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />

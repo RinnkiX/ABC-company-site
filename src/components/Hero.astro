@@ -2,97 +2,93 @@
 export interface Props {
 	title?: string;
 	slogan?: string;
+	eyebrow?: string;
 	backgroundImage?: string;
 }
 
 const {
 	title = 'Empowering Your Business With Digital Excellence',
 	slogan = 'We build scalable, high-impact solutions to help you grow with confidence.',
+	eyebrow = 'Ethical AI · Trusted Technology',
 	backgroundImage = '/images/viora/hero/corporate-hero-1.jpg',
 } = Astro.props;
 ---
 
-<section class="hero" style={`background-image: url('${backgroundImage}')`}>
-	<div class="hero-overlay"></div>
-	<div class="hero-content">
-		<h1>{title}</h1>
-		<p class="slogan">{slogan}</p>
-		<div class="cta">
-			<a href="/about" class="button">Learn More</a>
-			<a href="/blog" class="button secondary">Read Blog</a>
+<section class="hero">
+	<div class="hero-copy">
+		<p class="hero-eyebrow reveal" style="--reveal-delay: 0ms">{eyebrow}</p>
+		<h1 class="reveal" style="--reveal-delay: 80ms">{title}</h1>
+		<p class="slogan reveal" style="--reveal-delay: 160ms">{slogan}</p>
+		<div class="cta reveal" style="--reveal-delay: 240ms">
+			<a href="/about" class="btn btn--primary">Learn More</a>
+			<a href="/blog" class="btn btn--ghost">Read Blog</a>
 		</div>
+	</div>
+	<div class="hero-visual-wrap reveal" style="--reveal-delay: 240ms">
+		<img class="hero-visual" src={backgroundImage} alt="" />
 	</div>
 </section>
 
 <style>
 	.hero {
-		position: relative;
-		width: 100vw;
-		margin-left: calc(50% - 50vw);
-		min-height: 520px;
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-6);
 		align-items: center;
-		justify-content: center;
-		text-align: center;
-		color: white;
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
+		max-width: var(--container-max);
+		margin-inline: auto;
+		padding: clamp(3rem, 6vw, 5rem) var(--container-pad) 0;
 	}
-	.hero-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(15, 18, 25, 0.55);
+	.hero-copy {
+		max-width: 560px;
 	}
-	.hero-content {
-		position: relative;
-		z-index: 1;
-		padding: 4rem 1rem;
-		max-width: 720px;
+	.hero-eyebrow {
+		margin: 0 0 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
+		color: var(--color-primary);
 	}
 	.hero h1 {
-		font-size: 3rem;
-		margin-bottom: 0.75rem;
+		margin: 0 0 1rem;
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 700;
+		letter-spacing: var(--tracking-tight);
 		line-height: 1.1;
-		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+		color: var(--text-strong);
 	}
 	.slogan {
-		font-size: 1.25rem;
-		margin-bottom: 2rem;
-		color: rgba(255, 255, 255, 0.9);
-		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+		margin: 0 0 2rem;
+		max-width: 48ch;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--text);
 	}
 	.cta {
 		display: flex;
 		gap: 1rem;
-		justify-content: center;
 		flex-wrap: wrap;
 	}
-	.button {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		background: var(--accent);
-		color: white;
-		text-decoration: none;
-		border-radius: 6px;
-		font-weight: 700;
+	.hero-visual-wrap {
+		display: flex;
+		justify-content: flex-end;
 	}
-	.button:hover {
-		background: var(--accent-dark);
-		color: white;
+	.hero-visual {
+		width: 100%;
+		max-width: 560px;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-card);
 	}
-	.button.secondary {
-		background: transparent;
-		color: white;
-		border: 2px solid white;
-	}
-	.button.secondary:hover {
-		background: white;
-		color: rgb(var(--black));
-	}
-	@media (max-width: 720px) {
-		.hero h1 {
-			font-size: 2.25rem;
+	@media (max-width: 768px) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: var(--space-4);
+			padding-top: var(--space-4);
+		}
+		.hero-visual-wrap {
+			justify-content: center;
 		}
 	}
 </style>

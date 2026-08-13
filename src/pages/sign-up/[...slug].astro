@@ -22,6 +22,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 					signInUrl="/sign-in"
 					forceRedirectUrl="/dashboard"
 					fallbackRedirectUrl="/dashboard"
+					appearance={{ variables: { colorPrimary: '#1A73E8', borderRadius: '8px' } }}
 				/>
 			</div>
 		</main>
@@ -30,8 +31,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 </html>
 
 <style>
+	main {
+		padding-top: var(--space-4);
+	}
+	h1 {
+		text-align: center;
+		margin-bottom: var(--space-2);
+	}
 	.auth-box {
-		margin: 2rem auto;
+		margin: var(--space-2) auto;
 		max-width: 480px;
+		padding: var(--space-4);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow-card);
 	}
 </style>
