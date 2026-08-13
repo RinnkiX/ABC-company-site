@@ -4,73 +4,73 @@ import './dashboard.css';
 
 const KPIS = [
 	{ value: '12+', label: 'Years of Experience' },
-	{ value: '250', label: 'Successful Projects' },
-	{ value: '50+', label: 'Corporate Clients' },
+	{ value: '45', label: 'Successful Projects' },
+	{ value: '15', label: 'Corporate Clients' },
 	{ value: '98%', label: 'Client Satisfaction' },
 	{ value: '94%', label: 'Client Retention' },
 	{ value: '72', label: 'Avg. NPS Score' },
 ];
 
-// Quarterly revenue in USD millions.
+// Quarterly revenue in USD thousands.
 const REVENUE_TREND = [
-	{ label: "Q1 '25", value: 1.2 },
-	{ label: "Q2 '25", value: 1.4 },
-	{ label: "Q3 '25", value: 1.5 },
-	{ label: "Q4 '25", value: 1.9 },
-	{ label: "Q1 '26", value: 1.6 },
-	{ label: "Q2 '26", value: 1.7 },
+	{ label: "Q1 '25", value: 100 },
+	{ label: "Q2 '25", value: 112 },
+	{ label: "Q3 '25", value: 124 },
+	{ label: "Q4 '25", value: 140 },
+	{ label: "Q1 '26", value: 120 },
+	{ label: "Q2 '26", value: 132 },
 ];
 const MAX_REV = Math.max(...REVENUE_TREND.map((q) => q.value));
 
-// FY2026 YTD (H1) revenue split by service line — sums to $3.3M.
+// FY2026 YTD (H1) revenue split by service line — sums to $250K.
 const SERVICE_LINES = [
-	{ name: 'Web Development', pct: 32, amount: 1.06 },
-	{ name: 'Business Strategy', pct: 27, amount: 0.89 },
-	{ name: 'Digital Marketing', pct: 24, amount: 0.79 },
-	{ name: 'Branding & Identity', pct: 17, amount: 0.56 },
+	{ name: 'Web Development', pct: 30, amount: 75 },
+	{ name: 'Business Strategy', pct: 27, amount: 68 },
+	{ name: 'Digital Marketing', pct: 23, amount: 58 },
+	{ name: 'Branding & Identity', pct: 20, amount: 49 },
 ];
 
-// Delivered project counts across service lines — sums to 250.
+// Delivered project counts across service lines — sums to 45.
 const PROJECT_MIX = [
-	{ name: 'Web Development', count: 92 },
-	{ name: 'Business Strategy', count: 58 },
-	{ name: 'Digital Marketing', count: 54 },
-	{ name: 'Branding & Identity', count: 46 },
+	{ name: 'Web Development', count: 17 },
+	{ name: 'Business Strategy', count: 11 },
+	{ name: 'Digital Marketing', count: 9 },
+	{ name: 'Branding & Identity', count: 8 },
 ];
 const TOTAL_PROJECTS = PROJECT_MIX.reduce((sum, p) => sum + p.count, 0);
 
 const CLIENTS = [
-	{ name: 'Apex Financial', industry: 'Finance', engagement: 'Business Strategy', value: '$540K', status: 'Closing Q4', tone: 'blue' },
-	{ name: 'NovaTech Group', industry: 'Fintech', engagement: 'Web Development', value: '$480K', status: 'Active', tone: 'green' },
-	{ name: 'BluePeak Energy', industry: 'Energy', engagement: 'Web Development', value: '$350K', status: 'Onboarding', tone: 'amber' },
-	{ name: 'MedCore Health', industry: 'Healthcare', engagement: 'Branding & Identity', value: '$310K', status: 'Active', tone: 'green' },
-	{ name: 'Northwind Logistics', industry: 'Logistics', engagement: 'Web Development', value: '$265K', status: 'Active', tone: 'green' },
-	{ name: 'Vertice Retail', industry: 'E-commerce', engagement: 'Digital Marketing', value: '$220K', status: 'Renewal Q3', tone: 'amber' },
+	{ name: 'Apex Financial', industry: 'Finance', engagement: 'Business Strategy', value: '$48K', status: 'Closing Q4', tone: 'blue' },
+	{ name: 'NovaTech Group', industry: 'Fintech', engagement: 'Web Development', value: '$42K', status: 'Active', tone: 'green' },
+	{ name: 'BluePeak Energy', industry: 'Energy', engagement: 'Web Development', value: '$34K', status: 'Onboarding', tone: 'amber' },
+	{ name: 'MedCore Health', industry: 'Healthcare', engagement: 'Branding & Identity', value: '$29K', status: 'Active', tone: 'green' },
+	{ name: 'Northwind Logistics', industry: 'Logistics', engagement: 'Web Development', value: '$24K', status: 'Active', tone: 'green' },
+	{ name: 'Vertice Retail', industry: 'E-commerce', engagement: 'Digital Marketing', value: '$19K', status: 'Renewal Q3', tone: 'amber' },
 ];
 
-// Headcount by department — sums to 45.
+// Headcount by department — sums to 12.
 const TEAM_DEPTS = [
-	{ name: 'Engineering', count: 18 },
-	{ name: 'Strategy & Consulting', count: 9 },
-	{ name: 'Design', count: 8 },
-	{ name: 'Marketing', count: 6 },
-	{ name: 'Client Success', count: 4 },
+	{ name: 'Engineering', count: 5 },
+	{ name: 'Strategy & Consulting', count: 2 },
+	{ name: 'Design', count: 2 },
+	{ name: 'Marketing', count: 2 },
+	{ name: 'Client Success', count: 1 },
 ];
 const TEAM_MAX = Math.max(...TEAM_DEPTS.map((d) => d.count));
 
 const OPS_STATS = [
-	{ value: '82%', label: 'Capacity Utilization' },
-	{ value: '4.2 mo', label: 'Avg. Project Duration' },
-	{ value: '14 mo', label: 'Avg. Engagement Length' },
-	{ value: '5', label: 'Open Roles' },
+	{ value: '76%', label: 'Capacity Utilization' },
+	{ value: '2.8 mo', label: 'Avg. Project Duration' },
+	{ value: '7 mo', label: 'Avg. Engagement Length' },
+	{ value: '1', label: 'Open Roles' },
 ];
 
 const MILESTONES = [
-	{ date: 'Jul 2026', text: 'Signed Apex Financial to a 12-month business strategy engagement ($540K).' },
-	{ date: 'Jun 2026', text: 'Launched the BluePeak Energy client portal — first-month organic traffic +63%.' },
+	{ date: 'Jul 2026', text: 'Signed Apex Financial to a 12-month business strategy engagement ($48K).' },
+	{ date: 'Jun 2026', text: 'Launched the BluePeak Energy client portal — first-month organic traffic +42%.' },
 	{ date: 'May 2026', text: 'Renewed the MedCore Health brand program for a third consecutive year.' },
 	{ date: 'Apr 2026', text: 'Named "Best B2B Agency" at the Regional Digital Excellence Awards.' },
-	{ date: 'Feb 2026', text: 'Crossed $250M in cumulative client revenue impact since 2018.' },
+	{ date: 'Feb 2026', text: 'Crossed $24M in cumulative client revenue impact since 2018.' },
 ];
 
 export default function DashboardContent() {
@@ -124,14 +124,14 @@ export default function DashboardContent() {
 				<div className="dash-section-head">
 					<h2>Revenue Trend</h2>
 					<span className="dash-hint">
-						FY2025 total $6.0M · FY2026 projected $7.3M (+22% YoY)
+						FY2025 total $480K · FY2026 projected $540K (+13% YoY)
 					</span>
 				</div>
 				<div className="dash-card">
 					<div className="dash-chart">
 						{REVENUE_TREND.map((q) => (
 							<div className="dash-col" key={q.label}>
-								<span className="dash-bar-value">${q.value}M</span>
+								<span className="dash-bar-value">${q.value}K</span>
 								<div className="dash-bar-zone">
 									<div
 										className="dash-bar"
@@ -148,7 +148,7 @@ export default function DashboardContent() {
 			<section className="dash-section">
 				<div className="dash-section-head">
 					<h2>Book of Business</h2>
-					<span className="dash-hint">FY2026 YTD · $3.3M</span>
+					<span className="dash-hint">FY2026 YTD · $250K</span>
 				</div>
 				<div className="dash-grid-2">
 					<div className="dash-card">
@@ -158,7 +158,7 @@ export default function DashboardContent() {
 								<div className="dash-progress-head">
 									<span>{s.name}</span>
 									<span>
-										${s.amount}M · {s.pct}%
+										${s.amount}K · {s.pct}%
 									</span>
 								</div>
 								<div className="dash-progress-track">
