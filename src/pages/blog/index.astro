@@ -27,6 +27,16 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 			main {
 				width: 960px;
 			}
+			.page-header {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			.page-header h1 {
+				margin-bottom: 0.5rem;
+			}
+			.page-header p {
+				color: rgb(var(--gray));
+			}
 			ul {
 				display: flex;
 				flex-wrap: wrap;
@@ -96,6 +106,10 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 	<body>
 		<Header />
 		<main>
+			<section class="page-header">
+				<h1>Latest News & Insights</h1>
+				<p>Explore the latest updates, stories, and ideas from ABC Company.</p>
+			</section>
 			<section>
 				<ul>
 					{

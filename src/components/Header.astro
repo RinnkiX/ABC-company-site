@@ -1,10 +1,7 @@
 ---
-import { UserButton } from '@clerk/astro/components';
 import { SITE_TITLE } from '../consts';
+import AuthLinks from './AuthLinks.jsx';
 import HeaderLink from './HeaderLink.astro';
-
-const auth = Astro.locals.auth;
-const userId = auth ? (await auth()).userId : null;
 ---
 
 <header>
@@ -14,20 +11,11 @@ const userId = auth ? (await auth()).userId : null;
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
-			{userId && <HeaderLink href="/dashboard">Dashboard</HeaderLink>}
 		</div>
-		<div class="auth-links">
-			{userId ? (
-				<UserButton afterSignOutUrl="/" client:load />
-			) : (
-				<>
-					<a href="/sign-in" class="auth-link">Login</a>
-					<a href="/sign-up" class="auth-link signup">Sign Up</a>
-				</>
-			)}
-		</div>
+		<AuthLinks client:load />
 	</nav>
 </header>
+
 <style>
 	header {
 		margin: 0;
@@ -55,6 +43,9 @@ const userId = auth ? (await auth()).userId : null;
 		display: flex;
 		align-items: center;
 	}
+	.auth-links {
+		gap: 0.5rem;
+	}
 	.internal-links {
 		margin-inline: auto;
 	}
@@ -80,26 +71,37 @@ const userId = auth ? (await auth()).userId : null;
 	button.login:hover {
 		background: var(--accent-dark);
 	}
-	.auth-link {
-		padding: 0.5em 1em;
-		color: var(--accent);
-		text-decoration: none;
-		border-radius: 6px;
-		font-weight: 500;
-	}
-	.auth-link:hover {
-		background: rgba(var(--gray-light), 0.5);
-	}
-	.auth-link.signup {
-		background: var(--accent);
-		color: white;
-	}
-	.auth-link.signup:hover {
-		background: var(--accent-dark);
-	}
 	@media (max-width: 720px) {
 		.internal-links {
 			gap: 0.25em;
 		}
+	}
+</style>
+
+<style is:global>
+	.auth-links a.auth-link {
+		padding: 0.55em 1.1em;
+		border-radius: 6px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+	.auth-links a.auth-link:not(.signup) {
+		color: var(--accent);
+		background: white;
+		border: 1.5px solid var(--accent);
+	}
+	.auth-links a.auth-link:not(.signup):hover {
+		background: var(--accent);
+		color: white;
+	}
+	.auth-links a.auth-link.signup {
+		background: var(--accent);
+		color: white;
+		border: 1.5px solid var(--accent);
+	}
+	.auth-links a.auth-link.signup:hover {
+		background: var(--accent-dark);
+		border-color: var(--accent-dark);
 	}
 </style>

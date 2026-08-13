@@ -5,10 +5,8 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import ArticleList from '../components/ArticleList.astro';
 import Likes from '../components/Likes.jsx';
+import HomeCta from '../components/HomeCta.jsx';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const auth = Astro.locals.auth;
-const userId = auth ? (await auth()).userId : null;
 ---
 
 <!doctype html>
@@ -19,15 +17,46 @@ const userId = auth ? (await auth()).userId : null;
 	<body>
 		<Header />
 		<main>
-			<Hero />
+			<Hero
+				title="Empowering Your Business With Digital Excellence"
+				slogan="We build scalable, high-impact solutions to help you grow with confidence."
+			/>
 
 			<section class="intro">
-				<h2>About ABC Company</h2>
-				<p>
-					ABC Company builds modern technology solutions for businesses of all sizes.
-					We specialize in AI-driven products, enterprise software, and digital transformation.
-				</p>
-				<a href="/about">Read more about us →</a>
+				<div class="intro-grid">
+					<div class="intro-text">
+						<h2>About ABC Company</h2>
+						<p>
+							As a trusted corporate partner, ABC Company specializes in delivering
+							strategic digital solutions. From Business Strategy to Web Development,
+							Branding & Identity to Digital Marketing, we help organizations grow
+							with confidence.
+						</p>
+						<a href="/about" class="button">Read more about us →</a>
+					</div>
+					<div class="intro-image">
+						<img src="/images/viora/about/about-1.jpg" alt="ABC Company team at work" />
+					</div>
+				</div>
+
+				<div class="intro-stats">
+					<div class="stat">
+						<strong>10+</strong>
+						<span>Years of Experience</span>
+					</div>
+					<div class="stat">
+						<strong>250+</strong>
+						<span>Successful Projects</span>
+					</div>
+					<div class="stat">
+						<strong>50+</strong>
+						<span>Corporate Clients</span>
+					</div>
+					<div class="stat">
+						<strong>98%</strong>
+						<span>Client Satisfaction</span>
+					</div>
+				</div>
 			</section>
 
 			<ArticleList />
@@ -38,13 +67,7 @@ const userId = auth ? (await auth()).userId : null;
 				<Likes client:load />
 			</section>
 
-			{!userId && (
-				<section class="cta-section">
-					<h2>Join ABC Company</h2>
-					<p>Sign in to access your dashboard and business insights.</p>
-					<a href="/sign-in" class="button">Sign In / Register</a>
-				</section>
-			)}
+			<HomeCta client:load />
 		</main>
 		<Footer />
 	</body>
@@ -57,6 +80,55 @@ const userId = auth ? (await auth()).userId : null;
 		background: white;
 		border-radius: 8px;
 		box-shadow: var(--box-shadow);
+	}
+	.intro-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		align-items: center;
+	}
+	.intro-image img {
+		width: 100%;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+	}
+	.intro-stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 1rem;
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.intro-stats .stat {
+		text-align: center;
+	}
+	.intro-stats strong {
+		display: block;
+		font-size: 2rem;
+		color: var(--accent);
+	}
+	.intro-stats span {
+		font-size: 0.9rem;
+		color: rgb(var(--gray));
+	}
+	.intro .button {
+		display: inline-block;
+		margin-top: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		background: var(--accent);
+		color: white;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 700;
+	}
+	.intro .button:hover {
+		background: var(--accent-dark);
+	}
+	@media (max-width: 720px) {
+		.intro-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 	.interactive-demo {
 		margin: 3rem 0;

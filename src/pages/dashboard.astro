@@ -1,13 +1,9 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import DashboardContent from '../components/DashboardContent.jsx';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const { userId } = Astro.locals.auth();
-if (!userId) {
-	return Astro.redirect('/sign-in');
-}
 ---
 
 <!doctype html>
@@ -18,36 +14,19 @@ if (!userId) {
 	<body>
 		<Header />
 		<main>
-			<h1>Dashboard</h1>
-			<p class="welcome">Welcome back! Your user ID is: <code>{userId}</code></p>
-
-			<section class="stats">
-				<h2>Business Overview</h2>
-				<div class="stats-grid">
-					<div class="stat-card">
-						<h3>$1.2M</h3>
-						<p>Total Revenue</p>
-					</div>
-					<div class="stat-card">
-						<h3>3,420</h3>
-						<p>Active Users</p>
-					</div>
-					<div class="stat-card">
-						<h3>856</h3>
-						<p>New Orders</p>
-					</div>
-					<div class="stat-card">
-						<h3>98%</h3>
-						<p>Satisfaction</p>
-					</div>
-				</div>
-			</section>
+			<DashboardContent client:load />
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
+	.dashboard-banner {
+		width: 100%;
+		border-radius: 12px;
+		box-shadow: var(--box-shadow);
+		margin-bottom: 2rem;
+	}
 	.welcome {
 		margin-bottom: 2rem;
 	}

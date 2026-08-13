@@ -1,34 +1,66 @@
 ---
 export interface Props {
-	companyName?: string;
+	title?: string;
 	slogan?: string;
+	backgroundImage?: string;
 }
 
-const { companyName = 'ABC Company', slogan = 'We build modern technology solutions.' } = Astro.props;
+const {
+	title = 'Empowering Your Business With Digital Excellence',
+	slogan = 'We build scalable, high-impact solutions to help you grow with confidence.',
+	backgroundImage = '/images/viora/hero/corporate-hero-1.jpg',
+} = Astro.props;
 ---
 
-<section class="hero">
-	<h1>Welcome to {companyName}</h1>
-	<p class="slogan">{slogan}</p>
-	<div class="cta">
-		<a href="/about" class="button">Learn More</a>
-		<a href="/blog" class="button secondary">Read Blog</a>
+<section class="hero" style={`background-image: url('${backgroundImage}')`}>
+	<div class="hero-overlay"></div>
+	<div class="hero-content">
+		<h1>{title}</h1>
+		<p class="slogan">{slogan}</p>
+		<div class="cta">
+			<a href="/about" class="button">Learn More</a>
+			<a href="/blog" class="button secondary">Read Blog</a>
+		</div>
 	</div>
 </section>
 
 <style>
 	.hero {
+		position: relative;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		min-height: 520px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		text-align: center;
+		color: white;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(15, 18, 25, 0.55);
+	}
+	.hero-content {
+		position: relative;
+		z-index: 1;
 		padding: 4rem 1rem;
+		max-width: 720px;
 	}
 	.hero h1 {
-		font-size: 3.5rem;
-		margin-bottom: 0.5rem;
+		font-size: 3rem;
+		margin-bottom: 0.75rem;
+		line-height: 1.1;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 	}
 	.slogan {
 		font-size: 1.25rem;
-		color: rgb(var(--gray));
 		margin-bottom: 2rem;
+		color: rgba(255, 255, 255, 0.9);
+		text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 	}
 	.cta {
 		display: flex;
@@ -51,11 +83,16 @@ const { companyName = 'ABC Company', slogan = 'We build modern technology soluti
 	}
 	.button.secondary {
 		background: transparent;
-		color: var(--accent);
-		border: 2px solid var(--accent);
+		color: white;
+		border: 2px solid white;
 	}
 	.button.secondary:hover {
-		background: var(--accent);
-		color: white;
+		background: white;
+		color: rgb(var(--black));
+	}
+	@media (max-width: 720px) {
+		.hero h1 {
+			font-size: 2.25rem;
+		}
 	}
 </style>
