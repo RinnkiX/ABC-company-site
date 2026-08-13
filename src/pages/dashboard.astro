@@ -21,35 +21,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 </html>
 
 <style>
-	.dashboard-banner {
-		width: 100%;
-		border-radius: 12px;
-		box-shadow: var(--box-shadow);
-		margin-bottom: 2rem;
-	}
-	.welcome {
-		margin-bottom: 2rem;
-	}
-	.stats-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-		gap: 1.5rem;
-		margin-top: 1rem;
-	}
-	.stat-card {
-		padding: 1.5rem;
-		background: white;
-		border-radius: 8px;
-		box-shadow: var(--box-shadow);
-		text-align: center;
-	}
-	.stat-card h3 {
-		font-size: 2rem;
-		margin: 0;
-		color: var(--accent);
-	}
-	.stat-card p {
-		margin: 0.5rem 0 0;
-		color: rgb(var(--gray));
+	main {
+		width: min(1000px, calc(100% - 2em));
 	}
 </style>
