@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import ArticleList from '../components/ArticleList.astro';
 import Likes from '../components/Likes.jsx';
 import HomeCta from '../components/HomeCta.jsx';
+import EmailDemo from '../components/EmailDemo.jsx';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
@@ -47,6 +48,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				<h2>Interactive Demo</h2>
 				<p>This React island runs inside the Astro page:</p>
 				<Likes client:load />
+			</section>
+
+			<section class="email-demo-section">
+				<EmailDemo client:load />
 			</section>
 
 			<HomeCta client:load />
